@@ -36,9 +36,7 @@ jobs:
           echo test, and deploy your project.,
           git pull https://github.com/saud-tkxel/test-repo.git
           cd test-repo.git
-          git config --global pull.rebase false 
+          git config --global pull.rebase false &&  git checkout usdev && git pull origin dev && git push usdev
           git branch
           git status
-          git checkout usdev
-          git pull origin dev
-          git push usdev
+          
