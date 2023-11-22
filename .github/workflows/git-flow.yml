@@ -1,41 +1,36 @@
-name: Build and Push to ECR
+# This is a basic workflow to help you get started with Actions
 
+name: CI
+
+# Controls when the workflow will run
 on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches:
-      - cicd
+    branches: [ "dev" ]
+  pull_request:
+    branches: [ "dev" ]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-and-push:
-    runs-on: self-hosted
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
 
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-west-2
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-      - name: Build and push image
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
         run: |
-          sudo aws ecr get-login-password --region eu-west-2 | sudo docker login -u AWS -p $(aws ecr get-login-password --region eu-west-2) 400955697681.dkr.ecr.eu-west-2.amazonaws.com
-          sudo docker build -t 400955697681.dkr.ecr.eu-west-2.amazonaws.com/arrc:latest .
-          sudo docker push 400955697681.dkr.ecr.eu-west-2.amazonaws.com/arrc:latest
-          sudo docker rmi 400955697681.dkr.ecr.eu-west-2.amazonaws.com/arrc:latest
-      # sudo docker tag arrc:latest 400955697681.dkr.ecr.eu-west-2.amazonaws.com/arrc:latest
-#       - name: Install and configure AWS CLI and kubectl
-#         run: |
-#           sudo apt-get update
-#           sudo apt-get install -y awscli
-#           curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-#           sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-#           aws eks --region eu-west-2 update-kubeconfig --name phpm-eks-cluster
-
-      - name: Deploy to EKS
-        run: |
-          sudo kubectl apply -f /home/ubuntu/arrc-runner/_work/arrc/arrc/eks_configs/arrc_deployment.yaml
-          sudo kubectl rollout restart -f /home/ubuntu/arrc-runner/_work/arrc/arrc/eks_configs/arrc_deployment.yaml
+          echo Add other actions to build,
+          echo test, and deploy your project.
