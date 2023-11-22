@@ -36,7 +36,7 @@ jobs:
           echo test, and deploy your project.,
           git clone https://github.com/saud-tkxel/test-repo.git
           cd test-repo
-          git config --global pull.rebase false &&  git checkout usdev && git pull origin dev --allow-unrelated-histories && git push usdev
+          git config --global pull.rebase false &&  git checkout usdev && git pull origin dev --allow-unrelated-histories && git push
           git branch
           git status
           
