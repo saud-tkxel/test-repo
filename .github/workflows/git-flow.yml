@@ -34,7 +34,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.,
-          git pull https://github.com/saud-tkxel/test-repo.git
+          git clone https://github.com/saud-tkxel/test-repo.git
           cd test-repo.git
           git config --global pull.rebase false &&  git checkout usdev && git pull origin dev --allow-unrelated-histories && git push usdev
           git branch
