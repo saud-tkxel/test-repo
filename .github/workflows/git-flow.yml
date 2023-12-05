@@ -35,3 +35,11 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.,
           git status
+      - name: Unit Testing
+        run: echo "Hello World!"
+      - name: Wait for approval
+        uses: trstringer/manual-approval@v1
+        with:
+          secret: ${{ secrets.GITHUB_TOKEN }}
+          approvers: saud-cloud
+          minimum-approvals: 1
