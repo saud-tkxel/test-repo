@@ -41,5 +41,5 @@ jobs:
         uses: trstringer/manual-approval@v1
         with:
           secret: ${{ secrets.GITHUB_TOKEN }}
-          approvers: saud-cloud
+          approvers: saud-tkxel
           minimum-approvals: 1
