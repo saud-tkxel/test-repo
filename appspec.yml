@@ -1,0 +1,36 @@
+version: 0.0
+os: linux
+
+hooks:
+  ApplicationStart:
+    - location: devops/before_install.sh
+      timeout: 60
+      runas: root
+
+# version: 0.0
+# os: linux
+# files:
+#   - source: /
+#     destination: /var/www/html
+# file_exists_behavior: OVERWRITE
+# hooks:
+#   BeforeInstall:
+#     - location: devops/before_install.sh
+#       timeout: 300
+#       runas: root
+#   # AfterInstall:
+#   #   - location: devops/after_install.sh
+#   #     timeout: 3000
+#   #     runas: root
+#   # ApplicationStart:
+#   #   - location: devops/application_start.sh
+#   #     timeout: 300
+#   #     runas: root
+#   # ApplicationStop:
+#   #   - location: devops/application_stop.sh
+#   #     timeout: 300
+#   #     runas: root
+#   # ValidateService:
+#   #   - location: devops/validate_service.sh
+#   #     timeout: 300
+#   #     runas: root
