@@ -5,7 +5,7 @@ hooks:
   ApplicationStart:
     - location: devops/before_install.sh
       timeout: 60
-      runas: root
+      runas: ubuntu
 
 # version: 0.0
 # os: linux
